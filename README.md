@@ -29,6 +29,31 @@ If the repository has been added, the maven dependency can be used in the affect
 </dependency>
 ```
 
+Regarding the [dozer custom bean configuration documentation](http://dozer.sourceforge.net/documentation/custombeanfactories.html)
+, the current library can be enabled by specify the `Jdk8CompatibilityBeanFactory` as default bean factory like below.
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://dozer.sourceforge.net
+          http://dozer.sourceforge.net/schema/beanmapping.xsd">
+    <configuration>
+        <bean-factory>io.craftsman.Jdk8CompatibilityBeanFactory</bean-factory>
+    </configuration>
+</mappings>
+```
+
+The mapping file above must be specified for usage like the code snippet below.
+
+```java
+List<String> mappingFiles = new ArrayList();
+mappingFiles.add("dozerGlobalConfiguration.xml");
+
+DozerBeanMapper dozerBeanMapper = new DozerBeanMapper();
+dozerBeanMapper.setMappingFiles(mappingFiles);
+```
+
 ## License
 
 [MIT License](LICENSE.md)

@@ -23,4 +23,24 @@ public class CreatorFactoryTest {
     public void testCreateLocalTimeCreator() {
         assertNotNull(objectUnderTest.createLocalTimeCreator());
     }
+
+    @Test
+    public void testCreateLocalDateTimeCreator() {
+        assertNotNull(objectUnderTest.createLocalDateTimeCreator());
+    }
+
+    @Test
+    public void testCreateZoneIdCreator() {
+        assertNotNull(objectUnderTest.createZoneIdCreator());
+    }
+
+    @Test
+    public void testCreateDurationCreator() {
+        assertNotNull(objectUnderTest.createDurationCreator());
+    }
+
+    @Test
+    public void testCreatePeriodCreator() {
+        assertNotNull(objectUnderTest.createPeriodCreator());
+    }
 }

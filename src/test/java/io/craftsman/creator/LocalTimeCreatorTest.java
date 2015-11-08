@@ -9,7 +9,7 @@ import static org.junit.Assert.assertEquals;
 
 public class LocalTimeCreatorTest {
 
-    LocalTimeCreator objectUnderTest;
+    private LocalTimeCreator objectUnderTest;
 
     @Before
     public void setUp() {
@@ -22,6 +22,4 @@ public class LocalTimeCreatorTest {
         LocalTime actualTime = objectUnderTest.create(localTime);
         assertEquals(localTime, actualTime);
     }
-
-
 }

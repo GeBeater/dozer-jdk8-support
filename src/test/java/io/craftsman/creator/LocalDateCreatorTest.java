@@ -9,7 +9,7 @@ import static org.junit.Assert.assertEquals;
 
 public class LocalDateCreatorTest {
 
-    LocalDateCreator objectUnderTest;
+    private LocalDateCreator objectUnderTest;
 
     @Before
     public void setUp() {
