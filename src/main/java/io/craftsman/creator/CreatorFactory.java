@@ -14,6 +14,8 @@ public class CreatorFactory {
 
     private PeriodCreator periodCreator;
 
+    private LocaleCreator localeCreator;
+
 
     public LocalDateCreator createLocalDateCreator() {
         if (localDateCreator == null) {
@@ -55,5 +57,12 @@ public class CreatorFactory {
             periodCreator = new PeriodCreator();
         }
         return periodCreator;
+    }
+
+    public LocaleCreator createLocaleCreator() {
+        if (localeCreator == null) {
+            localeCreator = new LocaleCreator();
+        }
+        return localeCreator;
     }
 }

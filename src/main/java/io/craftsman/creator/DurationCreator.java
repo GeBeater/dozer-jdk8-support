@@ -7,6 +7,6 @@ public class DurationCreator implements Creator<Duration> {
 
     @Override
     public Duration create(Object source) {
-        return Duration.of(((Duration)source).getNano(), ChronoUnit.NANOS);
+        return Duration.of(((Duration) source).getNano(), ChronoUnit.NANOS);
     }
 }

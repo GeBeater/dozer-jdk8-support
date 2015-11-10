@@ -29,26 +29,19 @@ If the repository has been added, the maven dependency can be used in the affect
 </dependency>
 ```
 
-Regarding the [dozer custom bean configuration documentation](http://dozer.sourceforge.net/documentation/custombeanfactories.html)
-, the current library can be enabled by specify the `Jdk8CompatibilityBeanFactory` as default bean factory like below.
-
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<mappings xmlns="http://dozer.sourceforge.net"
-          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:schemaLocation="http://dozer.sourceforge.net
-          http://dozer.sourceforge.net/schema/beanmapping.xsd">
-    <configuration>
-        <bean-factory>io.craftsman.Jdk8CompatibilityBeanFactory</bean-factory>
-    </configuration>
-</mappings>
-```
-
-The mapping file above must be specified for usage like the code snippet below.
+The current mappings are [Custom Converters](http://dozer.sourceforge.net/documentation/customconverter.html) based.
+Dozer provides (at least) two ways to integrate custom converters. Via XML file or the API. Although the API is the
+newer one and recommended, the converters must be implemented via XML file because the API does not work (see
+[#242](https://github.com/DozerMapper/dozer/issues/242). Regarding the
+[documentation](http://dozer.sourceforge.net/documentation/customconverter.html) the custom converters must be specified
+in the global configuration block. The current library comes with a corresponding configuration which can be enabled by
+the code snippet below, if a configuration block does not already exist, because Dozer does not allow to specify
+multiple configuration blocks. In this case the configuration block of the
+[dozerJdk8Converters.xml](src/main/java/resources/dozerJdk8Converters.xml) file must be taken over.
 
 ```java
 List<String> mappingFiles = new ArrayList();
-mappingFiles.add("dozerGlobalConfiguration.xml");
+mappingFiles.add("dozerJdk8Converters.xml");
 
 DozerBeanMapper dozerBeanMapper = new DozerBeanMapper();
 dozerBeanMapper.setMappingFiles(mappingFiles);
