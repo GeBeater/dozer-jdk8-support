@@ -1,6 +1,8 @@
 dozer-jdk8-support
 ==================
 
+[![Build Status](https://travis-ci.org/GeBeater/dozer-jdk8-support.svg)](https://travis-ci.org/GeBeater/dozer-jdk8-support)
+
 A library that provides the missing Java 8 type mappers for the [Dozer](https://github.com/DozerMapper/dozer) Java Bean
 Mapper.
 
