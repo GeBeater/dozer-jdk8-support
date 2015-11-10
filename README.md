@@ -37,7 +37,7 @@ newer one and recommended, the converters must be implemented via XML file becau
 in the global configuration block. The current library comes with a corresponding configuration which can be enabled by
 the code snippet below, if a configuration block does not already exist, because Dozer does not allow to specify
 multiple configuration blocks. In this case the configuration block of the
-[dozerJdk8Converters.xml](src/main/java/resources/dozerJdk8Converters.xml) file must be taken over.
+[dozerJdk8Converters.xml](src/main/resources/dozerJdk8Converters.xml) file must be taken over.
 
 ```java
 List<String> mappingFiles = new ArrayList();
