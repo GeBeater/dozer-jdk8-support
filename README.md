@@ -14,7 +14,7 @@ The library is published to the Central Repository and can be used as maven depe
 <dependency>
   <groupId>io.craftsman</groupId>
   <artifactId>dozer-jdk8-support</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>1.0.0</version>
 </dependency>
 ```
 
@@ -34,6 +34,22 @@ mappingFiles.add("dozerJdk8Converters.xml");
 
 DozerBeanMapper dozerBeanMapper = new DozerBeanMapper();
 dozerBeanMapper.setMappingFiles(mappingFiles);
+```
+
+## Deployment Notice (Maintainer only)
+
+A snapshot deployment (not available without adding the snapshot repository) can be performed with the command below.
+
+```bash
+mvn deploy
+```
+
+A release deployment can be performed with the commands below.
+
+```bash
+mvn release:clean release:prepare
+
+mvn release:perform
 ```
 
 ## License
