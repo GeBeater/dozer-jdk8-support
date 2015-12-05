@@ -3,6 +3,7 @@ dozer-jdk8-support
 
 [![Build Status](https://travis-ci.org/GeBeater/dozer-jdk8-support.svg)](https://travis-ci.org/GeBeater/dozer-jdk8-support)
 [![Coverage Status](https://coveralls.io/repos/GeBeater/dozer-jdk8-support/badge.svg?branch=master&service=github)](https://coveralls.io/github/GeBeater/dozer-jdk8-support?branch=master)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.craftsman/dozer-jdk8-support/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.craftsman/dozer-jdk8-support)
 
 A library that provides the missing Java 8 type mappers for the [Dozer](https://github.com/DozerMapper/dozer) Java Bean
 Mapper.
