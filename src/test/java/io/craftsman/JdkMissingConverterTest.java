@@ -13,6 +13,7 @@ import java.util.Locale;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.*;
 
@@ -32,6 +33,35 @@ public class JdkMissingConverterTest {
     @Before
     public void setUp() {
         when(creatorFactoryMock.createLocaleCreator()).thenReturn(localeCreatorMock);
+    }
+
+    @Test
+    public void testConvertWithMissingDestinationClass() {
+        Object sourceObject = new Object();
+        Object destinationObject = new Object();
+
+        Object actualObject = objectUnderTest.convert(destinationObject, sourceObject, null, Object.class);
+
+        assertEquals(destinationObject, actualObject);
+    }
+
+    @Test
+    public void testConvertWithMissingSourceClass() {
+        Object sourceObject = new Object();
+        Object destinationObject = new Object();
+
+        Object actualObject = objectUnderTest.convert(destinationObject, sourceObject, Object.class, null);
+
+        assertEquals(destinationObject, actualObject);
+    }
+
+    @Test
+    public void testConvertWithMissingSource() {
+        Object destinationObject = new Object();
+
+        Object actualObject = objectUnderTest.convert(destinationObject, null, Object.class, Object.class);
+
+        assertNull(actualObject);
     }
 
     @Test

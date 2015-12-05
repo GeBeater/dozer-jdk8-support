@@ -13,6 +13,7 @@ import java.time.temporal.ChronoUnit;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.*;
 
@@ -52,6 +53,35 @@ public class Jdk8CompatibilityConverterTest {
         when(creatorFactoryMock.createZoneIdCreator()).thenReturn(zoneIdCreatorMock);
         when(creatorFactoryMock.createDurationCreator()).thenReturn(durationCreatorMock);
         when(creatorFactoryMock.createPeriodCreator()).thenReturn(periodCreatorMock);
+    }
+
+    @Test
+    public void testConvertWithMissingDestinationClass() {
+        Object sourceObject = new Object();
+        Object destinationObject = new Object();
+
+        Object actualObject = objectUnderTest.convert(destinationObject, sourceObject, null, Object.class);
+
+        assertEquals(destinationObject, actualObject);
+    }
+
+    @Test
+    public void testConvertWithMissingSourceClass() {
+        Object sourceObject = new Object();
+        Object destinationObject = new Object();
+
+        Object actualObject = objectUnderTest.convert(destinationObject, sourceObject, Object.class, null);
+
+        assertEquals(destinationObject, actualObject);
+    }
+
+    @Test
+    public void testConvertWithMissingSource() {
+        Object destinationObject = new Object();
+
+        Object actualObject = objectUnderTest.convert(destinationObject, null, Object.class, Object.class);
+
+        assertNull(actualObject);
     }
 
     @Test
