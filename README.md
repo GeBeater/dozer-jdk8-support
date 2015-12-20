@@ -16,7 +16,7 @@ The library is published to the Central Repository and can be used as maven depe
 <dependency>
   <groupId>io.craftsman</groupId>
   <artifactId>dozer-jdk8-support</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
 </dependency>
 ```
 
