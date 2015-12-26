@@ -16,14 +16,14 @@ The library is published to the Central Repository and can be used as maven depe
 <dependency>
   <groupId>io.craftsman</groupId>
   <artifactId>dozer-jdk8-support</artifactId>
-  <version>1.0.1</version>
+  <version>1.0.2</version>
 </dependency>
 ```
 
 The current mappings are [Custom Converters](http://dozer.sourceforge.net/documentation/customconverter.html) based.
 Dozer provides (at least) two ways to integrate custom converters. Via XML file or the API. Although the API is the
 newer one and recommended, the converters must be implemented via XML file because the API does not work (see
-[#242](https://github.com/DozerMapper/dozer/issues/242). Regarding the
+[#242](https://github.com/DozerMapper/dozer/issues/242)). Regarding the
 [documentation](http://dozer.sourceforge.net/documentation/customconverter.html) the custom converters must be specified
 in the global configuration block. The current library comes with a corresponding configuration which can be enabled by
 the code snippet below, if a configuration block does not already exist, because Dozer does not allow to specify
