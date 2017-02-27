@@ -1,6 +1,22 @@
 package io.craftsman;
 
-import io.craftsman.creator.*;
+import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.Period;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.temporal.ChronoUnit;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -8,14 +24,14 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import java.time.*;
-import java.time.temporal.ChronoUnit;
-
-import static org.hamcrest.CoreMatchers.instanceOf;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.*;
+import io.craftsman.creator.CreatorFactory;
+import io.craftsman.creator.DurationCreator;
+import io.craftsman.creator.LocalDateCreator;
+import io.craftsman.creator.LocalDateTimeCreator;
+import io.craftsman.creator.LocalTimeCreator;
+import io.craftsman.creator.PeriodCreator;
+import io.craftsman.creator.ZoneIdCreator;
+import io.craftsman.creator.ZonedDateTimeCreator;
 
 @RunWith(MockitoJUnitRunner.class)
 public class Jdk8CompatibilityConverterTest {
@@ -28,6 +44,9 @@ public class Jdk8CompatibilityConverterTest {
 
     @Mock
     private LocalDateTimeCreator localDateTimeCreatorMock;
+    
+    @Mock
+    private ZonedDateTimeCreator zonedDateTimeCreatorMock;
 
     @Mock
     private ZoneIdCreator zoneIdCreatorMock;
@@ -50,6 +69,7 @@ public class Jdk8CompatibilityConverterTest {
         when(creatorFactoryMock.createLocalDateCreator()).thenReturn(localDateCreatorMock);
         when(creatorFactoryMock.createLocalTimeCreator()).thenReturn(localTimeCreatorMock);
         when(creatorFactoryMock.createLocalDateTimeCreator()).thenReturn(localDateTimeCreatorMock);
+        when(creatorFactoryMock.createZonedDateTimeCreator()).thenReturn(zonedDateTimeCreatorMock);
         when(creatorFactoryMock.createZoneIdCreator()).thenReturn(zoneIdCreatorMock);
         when(creatorFactoryMock.createDurationCreator()).thenReturn(durationCreatorMock);
         when(creatorFactoryMock.createPeriodCreator()).thenReturn(periodCreatorMock);
@@ -116,17 +136,32 @@ public class Jdk8CompatibilityConverterTest {
 
     @Test
     public void testConvertLocalDateTime() {
-        LocalDateTime sourceLocalDateTime = LocalDateTime.now();
-        LocalDateTime destinationLocalDateTime = null;
+    	LocalDateTime sourceLocalDateTime = LocalDateTime.now();
+    	LocalDateTime destinationLocalDateTime = null;
+    	
+    	when(localDateTimeCreatorMock.create(sourceLocalDateTime)).thenReturn(sourceLocalDateTime);
+    	
+    	Object actualLocalDateTime = objectUnderTest.convert(destinationLocalDateTime, sourceLocalDateTime, LocalDateTime.class, LocalDateTime.class);
+    	
+    	assertThat(actualLocalDateTime, instanceOf(LocalDateTime.class));
+    	assertEquals(sourceLocalDateTime, actualLocalDateTime);
+    	
+    	verify(localDateTimeCreatorMock, times(1)).create(sourceLocalDateTime);
+    }
+    
+    @Test
+    public void testConvertZonedDateTime() {
+        ZonedDateTime sourceZonedDateTime = ZonedDateTime.now();
+        ZonedDateTime destinationZonedDateTime = null;
 
-        when(localDateTimeCreatorMock.create(sourceLocalDateTime)).thenReturn(sourceLocalDateTime);
+        when(zonedDateTimeCreatorMock.create(sourceZonedDateTime)).thenReturn(sourceZonedDateTime);
 
-        Object actualLocalDateTime = objectUnderTest.convert(destinationLocalDateTime, sourceLocalDateTime, LocalDateTime.class, LocalDateTime.class);
+        Object actualZonedDateTime = objectUnderTest.convert(destinationZonedDateTime, sourceZonedDateTime, ZonedDateTime.class, ZonedDateTime.class);
 
-        assertThat(actualLocalDateTime, instanceOf(LocalDateTime.class));
-        assertEquals(sourceLocalDateTime, actualLocalDateTime);
+        assertThat(actualZonedDateTime, instanceOf(ZonedDateTime.class));
+        assertEquals(sourceZonedDateTime, actualZonedDateTime);
 
-        verify(localDateTimeCreatorMock, times(1)).create(sourceLocalDateTime);
+        verify(zonedDateTimeCreatorMock, times(1)).create(sourceZonedDateTime);
     }
 
     @Test

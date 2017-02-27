@@ -1,9 +1,16 @@
 package io.craftsman;
 
-import io.craftsman.creator.CreatorFactory;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.Period;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+
 import org.dozer.CustomConverter;
 
-import java.time.*;
+import io.craftsman.creator.CreatorFactory;
 
 public class Jdk8CompatibilityConverter implements CustomConverter {
 
@@ -30,7 +37,9 @@ public class Jdk8CompatibilityConverter implements CustomConverter {
         } else if (destinationClass.isAssignableFrom(Duration.class) && sourceClass.isAssignableFrom(Duration.class)) {
             destination = creatorFactory.createDurationCreator().create(source);
         } else if (destinationClass.isAssignableFrom(Period.class) && sourceClass.isAssignableFrom(Period.class)) {
-            destination = creatorFactory.createPeriodCreator().create(source);
+        	destination = creatorFactory.createPeriodCreator().create(source);
+        } else if (destinationClass.isAssignableFrom(ZonedDateTime.class) && sourceClass.isAssignableFrom(ZonedDateTime.class)) {
+            destination = creatorFactory.createZonedDateTimeCreator().create(source);
         }
 
         return destination;
