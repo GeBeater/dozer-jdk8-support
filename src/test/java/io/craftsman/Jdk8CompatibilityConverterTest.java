@@ -1,37 +1,28 @@
 package io.craftsman;
 
-import static org.hamcrest.CoreMatchers.instanceOf;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
-import java.time.Duration;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.Period;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.time.temporal.ChronoUnit;
-
+import io.craftsman.creator.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+ 		 
+import java.time.*;
+import java.time.temporal.ChronoUnit;
 
-import io.craftsman.creator.CreatorFactory;
-import io.craftsman.creator.DurationCreator;
-import io.craftsman.creator.LocalDateCreator;
-import io.craftsman.creator.LocalDateTimeCreator;
-import io.craftsman.creator.LocalTimeCreator;
-import io.craftsman.creator.PeriodCreator;
-import io.craftsman.creator.ZoneIdCreator;
-import io.craftsman.creator.ZonedDateTimeCreator;
+import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.*;
+
+import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class Jdk8CompatibilityConverterTest {
