@@ -12,9 +12,7 @@ import java.time.*;
 import java.time.temporal.ChronoUnit;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -28,7 +26,7 @@ public class Jdk8CompatibilityConverterTest {
 
     @Mock
     private LocalDateTimeCreator localDateTimeCreatorMock;
-    
+
     @Mock
     private ZonedDateTimeCreator zonedDateTimeCreatorMock;
 
@@ -120,19 +118,19 @@ public class Jdk8CompatibilityConverterTest {
 
     @Test
     public void testConvertLocalDateTime() {
-    	LocalDateTime sourceLocalDateTime = LocalDateTime.now();
-    	LocalDateTime destinationLocalDateTime = null;
-    	
-    	when(localDateTimeCreatorMock.create(sourceLocalDateTime)).thenReturn(sourceLocalDateTime);
-    	
-    	Object actualLocalDateTime = objectUnderTest.convert(destinationLocalDateTime, sourceLocalDateTime, LocalDateTime.class, LocalDateTime.class);
-    	
-    	assertThat(actualLocalDateTime, instanceOf(LocalDateTime.class));
-    	assertEquals(sourceLocalDateTime, actualLocalDateTime);
-    	
-    	verify(localDateTimeCreatorMock, times(1)).create(sourceLocalDateTime);
+        LocalDateTime sourceLocalDateTime = LocalDateTime.now();
+        LocalDateTime destinationLocalDateTime = null;
+
+        when(localDateTimeCreatorMock.create(sourceLocalDateTime)).thenReturn(sourceLocalDateTime);
+
+        Object actualLocalDateTime = objectUnderTest.convert(destinationLocalDateTime, sourceLocalDateTime, LocalDateTime.class, LocalDateTime.class);
+
+        assertThat(actualLocalDateTime, instanceOf(LocalDateTime.class));
+        assertEquals(sourceLocalDateTime, actualLocalDateTime);
+
+        verify(localDateTimeCreatorMock, times(1)).create(sourceLocalDateTime);
     }
-    
+
     @Test
     public void testConvertZonedDateTime() {
         ZonedDateTime sourceZonedDateTime = ZonedDateTime.now();

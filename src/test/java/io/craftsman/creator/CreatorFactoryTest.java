@@ -26,9 +26,9 @@ public class CreatorFactoryTest {
 
     @Test
     public void testCreateLocalDateTimeCreator() {
-    	assertNotNull(objectUnderTest.createLocalDateTimeCreator());
+        assertNotNull(objectUnderTest.createLocalDateTimeCreator());
     }
-    
+
     @Test
     public void testCreateZonedDateTimeCreator() {
         assertNotNull(objectUnderTest.createZonedDateTimeCreator());
