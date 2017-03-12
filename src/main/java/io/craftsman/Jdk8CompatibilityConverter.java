@@ -30,7 +30,9 @@ public class Jdk8CompatibilityConverter implements CustomConverter {
         } else if (destinationClass.isAssignableFrom(Duration.class) && sourceClass.isAssignableFrom(Duration.class)) {
             destination = creatorFactory.createDurationCreator().create(source);
         } else if (destinationClass.isAssignableFrom(Period.class) && sourceClass.isAssignableFrom(Period.class)) {
-            destination = creatorFactory.createPeriodCreator().create(source);
+        	destination = creatorFactory.createPeriodCreator().create(source);
+        } else if (destinationClass.isAssignableFrom(ZonedDateTime.class) && sourceClass.isAssignableFrom(ZonedDateTime.class)) {
+            destination = creatorFactory.createZonedDateTimeCreator().create(source);
         }
 
         return destination;

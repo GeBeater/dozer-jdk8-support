@@ -7,6 +7,8 @@ public class CreatorFactory {
     private LocalTimeCreator localTimeCreator;
 
     private LocalDateTimeCreator localDateTimeCreator;
+    
+    private ZonedDateTimeCreator zonedDateTimeCreator;
 
     private ZoneIdCreator zoneIdCreator;
 
@@ -32,10 +34,17 @@ public class CreatorFactory {
     }
 
     public LocalDateTimeCreator createLocalDateTimeCreator() {
-        if (localDateTimeCreator == null) {
-            localDateTimeCreator = new LocalDateTimeCreator();
+    	if (localDateTimeCreator == null) {
+    		localDateTimeCreator = new LocalDateTimeCreator();
+    	}
+    	return localDateTimeCreator;
+    }
+    
+    public ZonedDateTimeCreator createZonedDateTimeCreator() {
+        if (zonedDateTimeCreator == null) {
+            zonedDateTimeCreator = new ZonedDateTimeCreator();
         }
-        return localDateTimeCreator;
+        return zonedDateTimeCreator;
     }
 
     public ZoneIdCreator createZoneIdCreator() {
