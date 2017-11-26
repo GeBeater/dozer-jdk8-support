@@ -18,6 +18,8 @@ public class CreatorFactory {
 
     private LocaleCreator localeCreator;
 
+    private InstantCreator instantCreator;
+
 
     public LocalDateCreator createLocalDateCreator() {
         if (localDateCreator == null) {
@@ -73,5 +75,12 @@ public class CreatorFactory {
             localeCreator = new LocaleCreator();
         }
         return localeCreator;
+    }
+
+    public InstantCreator createInstantCreator() {
+        if (instantCreator == null) {
+        	instantCreator = new InstantCreator();
+        }
+        return instantCreator;
     }
 }

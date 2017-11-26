@@ -53,4 +53,9 @@ public class CreatorFactoryTest {
     public void testCreateLocaleCreator() {
         assertNotNull(objectUnderTest.createLocaleCreator());
     }
+
+    @Test
+    public void testCreateInstantCreator() {
+        assertNotNull(objectUnderTest.createInstantCreator());
+    }
 }
