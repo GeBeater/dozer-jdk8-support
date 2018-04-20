@@ -30,6 +30,11 @@ public class CreatorFactoryTest {
     }
 
     @Test
+    public void testCreateOffsetDateTimeCreator() {
+        assertNotNull(objectUnderTest.createOffsetDateTimeCreator());
+    }
+
+    @Test
     public void testCreateZonedDateTimeCreator() {
         assertNotNull(objectUnderTest.createZonedDateTimeCreator());
     }
