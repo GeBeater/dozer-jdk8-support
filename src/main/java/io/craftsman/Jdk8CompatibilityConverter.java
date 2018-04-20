@@ -25,6 +25,9 @@ public class Jdk8CompatibilityConverter implements CustomConverter {
         } else if (destinationClass.isAssignableFrom(LocalDateTime.class) && sourceClass.isAssignableFrom(LocalDateTime.class)) {
             destination = creatorFactory.createLocalDateTimeCreator().create(source);
         // use instance of source because otherwise it seems to be not possible to handle the package protected ZoneRegion class
+        }  else if (destinationClass.isAssignableFrom(OffsetDateTime.class) && sourceClass.isAssignableFrom(OffsetDateTime.class)) {
+            destination = creatorFactory.createOffsetDateTimeCreator().create(source);
+            // use instance of source because otherwise it seems to be not possible to handle the package protected ZoneRegion class
         } else if (destinationClass.isAssignableFrom(ZoneId.class) && (source instanceof ZoneId)) {
             destination = creatorFactory.createZoneIdCreator().create(source);
         } else if (destinationClass.isAssignableFrom(Duration.class) && sourceClass.isAssignableFrom(Duration.class)) {
