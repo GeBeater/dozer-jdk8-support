@@ -43,6 +43,9 @@ public class Jdk8CompatibilityConverterTest {
     private PeriodCreator periodCreatorMock;
 
     @Mock
+    private InstantCreator instantCreatorMock;
+
+    @Mock
     private CreatorFactory creatorFactoryMock;
 
     @InjectMocks
@@ -59,6 +62,7 @@ public class Jdk8CompatibilityConverterTest {
         when(creatorFactoryMock.createZoneIdCreator()).thenReturn(zoneIdCreatorMock);
         when(creatorFactoryMock.createDurationCreator()).thenReturn(durationCreatorMock);
         when(creatorFactoryMock.createPeriodCreator()).thenReturn(periodCreatorMock);
+        when(creatorFactoryMock.createInstantCreator()).thenReturn(instantCreatorMock);
     }
 
     @Test
@@ -193,6 +197,21 @@ public class Jdk8CompatibilityConverterTest {
         assertEquals(sourceDuration, actualDuration);
 
         verify(durationCreatorMock, times(1)).create(sourceDuration);
+    }
+
+    @Test
+    public void testConvertInstant() {
+        Instant sourceInstant = Instant.now();
+        Instant destinationInstant = null;
+
+        when(instantCreatorMock.create(sourceInstant)).thenReturn(sourceInstant);
+
+        Object actualDuration = objectUnderTest.convert(destinationInstant, sourceInstant, Instant.class, Instant.class);
+
+        assertThat(actualDuration, instanceOf(Instant.class));
+        assertEquals(sourceInstant, actualDuration);
+
+        verify(instantCreatorMock, times(1)).create(sourceInstant);
     }
 
     @Test
