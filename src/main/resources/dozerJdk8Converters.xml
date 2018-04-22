@@ -17,6 +17,10 @@
                 <class-b>java.time.LocalDateTime</class-b>
             </converter>
             <converter type="io.craftsman.Jdk8CompatibilityConverter">
+                <class-a>java.time.OffsetDateTime</class-a>
+                <class-b>java.time.OffsetDateTime</class-b>
+            </converter>
+            <converter type="io.craftsman.Jdk8CompatibilityConverter">
                 <class-a>java.time.ZonedDateTime</class-a>
                 <class-b>java.time.ZonedDateTime</class-b>
             </converter>

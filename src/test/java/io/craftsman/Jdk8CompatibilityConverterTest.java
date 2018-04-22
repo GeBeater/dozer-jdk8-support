@@ -28,6 +28,9 @@ public class Jdk8CompatibilityConverterTest {
     private LocalDateTimeCreator localDateTimeCreatorMock;
 
     @Mock
+    private OffsetDateTimeCreator offsetDateTimeCreatorMock;
+
+    @Mock
     private ZonedDateTimeCreator zonedDateTimeCreatorMock;
 
     @Mock
@@ -51,6 +54,7 @@ public class Jdk8CompatibilityConverterTest {
         when(creatorFactoryMock.createLocalDateCreator()).thenReturn(localDateCreatorMock);
         when(creatorFactoryMock.createLocalTimeCreator()).thenReturn(localTimeCreatorMock);
         when(creatorFactoryMock.createLocalDateTimeCreator()).thenReturn(localDateTimeCreatorMock);
+        when(creatorFactoryMock.createOffsetDateTimeCreator()).thenReturn(offsetDateTimeCreatorMock);
         when(creatorFactoryMock.createZonedDateTimeCreator()).thenReturn(zonedDateTimeCreatorMock);
         when(creatorFactoryMock.createZoneIdCreator()).thenReturn(zoneIdCreatorMock);
         when(creatorFactoryMock.createDurationCreator()).thenReturn(durationCreatorMock);
@@ -129,6 +133,21 @@ public class Jdk8CompatibilityConverterTest {
         assertEquals(sourceLocalDateTime, actualLocalDateTime);
 
         verify(localDateTimeCreatorMock, times(1)).create(sourceLocalDateTime);
+    }
+
+    @Test
+    public void testConvertOffsetDateTime() {
+        OffsetDateTime sourceOffsetDateTime = OffsetDateTime.now();
+        OffsetDateTime destinationOffsetDateTime = null;
+
+        when(offsetDateTimeCreatorMock.create(sourceOffsetDateTime)).thenReturn(sourceOffsetDateTime);
+
+        Object actualOffsetDateTime = objectUnderTest.convert(destinationOffsetDateTime, sourceOffsetDateTime, OffsetDateTime.class, OffsetDateTime.class);
+
+        assertThat(actualOffsetDateTime, instanceOf(OffsetDateTime.class));
+        assertEquals(sourceOffsetDateTime, actualOffsetDateTime);
+
+        verify(offsetDateTimeCreatorMock, times(1)).create(sourceOffsetDateTime);
     }
 
     @Test
