@@ -1,7 +1,7 @@
 package io.craftsman;
 
+import com.github.dozermapper.core.CustomConverter;
 import io.craftsman.creator.CreatorFactory;
-import org.dozer.CustomConverter;
 
 import java.util.Locale;
 
