@@ -16,7 +16,7 @@ The library is published to the Central Repository and can be used as maven depe
 <dependency>
   <groupId>io.craftsman</groupId>
   <artifactId>dozer-jdk8-support</artifactId>
-  <version>1.0.4</version>
+  <version>1.0.5</version>
 </dependency>
 ```
 
@@ -51,6 +51,8 @@ A release deployment can be performed with the commands below.
 ```bash
 mvn release:clean release:prepare
 
+# https://github.com/keybase/keybase-issues/issues/2798
+# export GPG_TTY=$(tty)
 mvn release:perform
 ```
 
