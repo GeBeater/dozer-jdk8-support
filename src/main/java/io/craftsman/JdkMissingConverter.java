@@ -1,9 +1,8 @@
 package io.craftsman;
 
-import com.github.dozermapper.core.CustomConverter;
 import io.craftsman.creator.CreatorFactory;
-
 import java.util.Locale;
+import org.dozer.CustomConverter;
 
 public class JdkMissingConverter implements CustomConverter {
 
